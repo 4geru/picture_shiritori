@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "xwlrpighwiadxc",
+    "password": "43849af6d8d30d0d1ce1ecd0ade766fdcf554b477be6497b5de2ce51cec41d81",
+    "database": "daojosp8colsec",
+    "host": "ec2-174-129-18-98.compute-1.amazonaws.com",
+    "port": "5432",
+    "dialect": "postgres",
+    "dialectOptions": { 
+      "ssl": true
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

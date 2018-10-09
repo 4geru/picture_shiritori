@@ -1,0 +1,22 @@
+{
+  "name": "heroku-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@line/bot-sdk": "^6.3.0",
+    "cloudinary": "^1.11.0",
+    "config": "^2.0.1",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "pg": "^7.4.3",
+    "sequelize": "^4.39.0",
+    "sequelize-cli": "^4.1.1"
+  }
+}
