@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Paint Something</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    
+    
+<div class="container">
+  <canvas id="canvas"></canvas>
+  <button id="btn" type="button" class="btn btn-primary btn-block">Share</button>
+</div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+  <script>
+    const canvas = document.querySelector('#canvas');
+    const signaturePad = new SignaturePad(canvas, {
+      backgroundColor: 'rgb(238,238,238)',
+    });
+    $(window).on('load', function(){
+      canvas.setAttribute('width', $('.container').width());
+      canvas.setAttribute('height', window.innerHeight - $('#btn').outerHeight() - 10);
+      signaturePad.clear();
+      liff.init(function (data) {});
+    });
+  </script>
+
+<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  $('#btn').on('click', function() {
+      axios.post('/post', {
+        image: signaturePad.toDataURL("image/jpeg") 
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+</script>
+
+  </body>
+</html>

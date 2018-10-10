@@ -2,6 +2,9 @@
 
 const line = require('@line/bot-sdk');
 const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const moment = require('moment');
 require('dotenv').config();
 
 const config = {
@@ -22,6 +25,7 @@ const client = new line.Client(config);
 // create Express app
 // about Express itself: https://expressjs.com/
 const app = express();
+app.use(bodyParser());
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
@@ -34,6 +38,34 @@ app.post('/callback', line.middleware(config), (req, res) => {
       res.status(500).end();
     });
 });
+
+app.get('/api/:userId', (req, res) => {
+  console.log(req.params)
+  const problem = 1 // findRoomQuiz(findUserRoom(userId));
+  res.header('Content-Type', 'application/json; charset=utf-8')
+  return res.send({quiz: problem});
+});
+app.post('/post', (req, res) => {
+  console.log('called')
+  console.log({req: req.body})
+  const base64 = req.body.image.split(',')[1];
+  const decode = new Buffer.from(base64,'base64');
+  const file_name = '/tmp/' + moment().format() + '.png';
+  fs.writeFile(file_name, decode, (err) => {
+      if(err){
+          console.log(err)
+      }else{
+        cloudinary.v2.uploader.upload(file_name, 
+          (result, error) => { console.log(result, error)});
+
+
+          console.log('saved');
+      }
+  });
+  return res.send({});
+})
+app.set("view engine", "ejs");
+app.get("/", (req, res) => { res.render(__dirname + "/index"); })
 
 pg_client.connect();
 // event handler
