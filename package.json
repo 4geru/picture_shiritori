@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@line/bot-sdk": "^6.3.0",
+    "body-parser": "^1.18.3",
     "cloudinary": "^1.11.0",
     "config": "^2.0.1",
     "dotenv": "^6.0.0",
